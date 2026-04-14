@@ -84,7 +84,7 @@ export default function FeaturesSection() {
       id="features"
       className="w-full py-24 px-6 md:px-20 relative overflow-hidden"
       style={{
-        backgroundImage: "url('public/features-bg.png')",
+        backgroundImage: "url('/features-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

@@ -30,7 +30,7 @@ export default function SignupPage() {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="public/signup-bg.png"
+          src="/signup-bg.png"
           alt="background"
           className="w-full h-full object-cover object-left"
         />

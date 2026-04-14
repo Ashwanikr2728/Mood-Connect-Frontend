@@ -9,7 +9,7 @@ export default function HeroSection() {
       id="home"
       className="w-full min-h-screen relative flex flex-col overflow-hidden"
       style={{
-        backgroundImage: "url('public/home-bg.png')",
+        backgroundImage: "url('/home-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

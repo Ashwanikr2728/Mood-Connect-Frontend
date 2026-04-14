@@ -6,7 +6,7 @@ export default function Footer() {
       id="about"
       className="w-full py-20 px-6 md:px-20 relative overflow-hidden text-center"
       style={{
-        backgroundImage: "url('public/footer-bg.png')",
+        backgroundImage: "url('/footer-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

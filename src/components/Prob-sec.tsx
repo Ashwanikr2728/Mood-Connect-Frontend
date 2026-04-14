@@ -38,7 +38,7 @@ export default function ProblemSection() {
     <div
       className="w-full py-24 px-6 md:px-20 relative overflow-hidden"
       style={{
-        backgroundImage: "url('public/features-bg.png')",
+        backgroundImage: "url('/features-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -102,7 +102,7 @@ export default function ProblemSection() {
           {/* RIGHT SIDE */}
           <div className="flex justify-center">
             <img
-              src="public/prob-bg.png"
+              src="/prob-bg.png"
               alt="workflow"
               className="w-full max-w-md opacity-95 mix-blend-multiply hover:scale-105 transition duration-500"
             />

@@ -47,7 +47,7 @@ export default function SafetySection() {
       id="safety"
       className="w-full py-24 px-6 md:px-20 relative overflow-hidden"
       style={{
-        backgroundImage: "url('/src/assets/safe-bg.png')",
+        backgroundImage: "url('public/safe-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

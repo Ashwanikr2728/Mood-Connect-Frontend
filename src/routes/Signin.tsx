@@ -29,7 +29,7 @@ export default function SigninPage() {
     <div
       className="min-h-screen w-full flex items-center justify-end relative overflow-hidden"
       style={{
-        backgroundImage: "url('/src/assets/signin-bg.png')",
+        backgroundImage: "url('public/signin-bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

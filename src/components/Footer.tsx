@@ -25,7 +25,7 @@ export default function Footer() {
             M
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-900">MindSupportAI</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Mood Connect</h2>
 
           <p className="text-gray-500 text-sm mt-2">
             AI-powered emotional support, built with care & safety.
@@ -95,7 +95,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-gray-500 text-sm">
-          © 2026 MindSupportAI. All rights reserved.
+          © 2026 Mood Connect. All rights reserved.
         </p>
       </div>
     </footer>

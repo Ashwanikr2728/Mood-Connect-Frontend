@@ -65,9 +65,11 @@ export default function SignupPage() {
       <div className="relative z-10 w-full max-w-md mr-20 bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-white/30">
         {/* Logo */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-9 h-9 bg-linear-to-br from-blue-500 to-purple-500 rounded-full shadow-md" />
-          <h1 className="text-lg font-semibold text-gray-700 tracking-wide">
-            MindSupportAI
+          <div className="w-10 h-10 bg-linear-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-105 transition">
+            M
+          </div>
+          <h1 className="text-xl font-semibold text-gray-700 tracking-wide">
+            Mood Connect
           </h1>
         </div>
 

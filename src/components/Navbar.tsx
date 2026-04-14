@@ -34,8 +34,8 @@ export default function Navbar() {
           M
         </div>
 
-        <span className="text-lg font-semibold text-gray-800 tracking-wide 0 transition">
-          MindSupportAI
+        <span className="text-xl font-semibold text-gray-800 tracking-wide 0 transition">
+          Mood Connect
         </span>
       </div>
 

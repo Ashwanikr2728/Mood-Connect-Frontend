@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
@@ -32,6 +31,9 @@ export default function DoctorDashboard() {
       {/* Sidebar */}
       <div className="w-64 bg-white/80 backdrop-blur-md border-r border-gray-200 p-6 flex flex-col justify-between">
         <div>
+          <div className="w-10 h-10 mb-2 bg-linear-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-105 transition">
+            M
+          </div>
           <h2 className="text-xl font-semibold text-blue-600 mb-8">
             Doctor Panel
           </h2>

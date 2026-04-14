@@ -16,7 +16,7 @@ export default function FirstNav() {
         </div>
 
         <span className="text-lg font-semibold text-gray-800 tracking-wide group-hover:text-blue-600 transition">
-          MindSupportAI
+          Mood Connect
         </span>
       </div>
     </nav>

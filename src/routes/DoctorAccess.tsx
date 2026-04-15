@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import FirstNav from "../components/FirstNav";
 import InputField from "../components/Input";
 import { api } from "../lib/api";
+import { LoaderIcon } from "lucide-react";
 
 export default function DoctorAccess() {
+  const [loading, setLoading] = useState(false);
   const [secret, setSecret] = useState("");
   const navigate = useNavigate();
   async function handleVerify() {
     try {
+      setLoading(true);
       await api.post("/api/v1/doctor/verify", {
         secret,
       });
@@ -17,6 +20,8 @@ export default function DoctorAccess() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       alert(err.response?.data?.message || "Invalid secret code");
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -54,7 +59,16 @@ export default function DoctorAccess() {
             onClick={handleVerify}
             className="w-full py-3 rounded-xl bg-linear-to-r from-blue-500 to-purple-500 text-white font-semibold shadow-md hover:opacity-90 transition"
           >
-            Verify & Continue
+            {loading ? (
+              <>
+                <div className="flex justify-center items-center gap-x-4">
+                  <LoaderIcon className="animate-spin h-5 w-5" />
+                  Verifying credentials...
+                </div>
+              </>
+            ) : (
+              <>Verify & Continue</>
+            )}
           </button>
 
           {/* Divider */}

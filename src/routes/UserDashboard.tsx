@@ -59,7 +59,10 @@ export default function UserDashboard() {
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-x-3">
           {" "}
-          <div className="w-10 h-10 ml-3 bg-linear-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-105 transition">
+          <div
+            onClick={() => navigate("/home")}
+            className="w-10 h-10 ml-3 bg-linear-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-105 transition"
+          >
             M
           </div>
           <h1 className="text-2xl font-semibold text-gray-800">

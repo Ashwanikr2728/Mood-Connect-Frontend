@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputField from "../components/Input";
 import { api } from "../lib/api";
+import { LoaderIcon } from "lucide-react";
 
 export default function SignupPage() {
+  const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [age, setAge] = useState<number | "">("");
@@ -12,16 +14,24 @@ export default function SignupPage() {
   const [city, setCity] = useState<string>("");
   const navigate = useNavigate();
   async function signup() {
-    await api.post("/api/v1/user/signup", {
-      firstName,
-      lastName,
-      age,
-      city,
-      email,
-      password,
-    });
-    alert("Signup successfull");
-    navigate("/signin");
+    try {
+      setLoading(true);
+      await api.post("/api/v1/user/signup", {
+        firstName,
+        lastName,
+        age,
+        city,
+        email,
+        password,
+      });
+      alert("Signup successfull");
+      navigate("/signin");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -120,10 +130,20 @@ export default function SignupPage() {
         {/* Button */}
         <div className="flex items-center my-8">
           <button
+            disabled={loading}
             onClick={signup}
             className="w-full py-3.5 rounded-xl bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 text-white font-semibold shadow-lg hover:scale-[1.02] hover:shadow-xl transition-all duration-300"
           >
-            Sign Up
+            {loading ? (
+              <>
+                <div className="flex justify-center items-center gap-x-3">
+                  <LoaderIcon className="animate-spin w-5 h-5" />
+                  Creating your space...
+                </div>
+              </>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </div>
 

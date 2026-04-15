@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { api } from "../../lib/api";
+import TypingLoader from "../TypingLoader";
 
 type Message = {
   role: "user" | "Solace AI";
@@ -18,40 +19,38 @@ const Chat = () => {
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!input.trim() || loading) return;
+    const userInput = input.trim();
+    if (!userInput || loading) return;
 
-    const userMessage: Message = { role: "user", text: input };
+    const userMessage: Message = { role: "user", text: userInput };
     setMessages((prev) => [...prev, userMessage]);
 
+    setInput(""); // 🔥 immediately clear
     setLoading(true);
 
     try {
-      try {
-        const res = await api.post("/api/chat", {
-          message: input,
-        });
+      const res = await api.post("/api/chat", {
+        message: userInput,
+      });
 
-        const data = res.data;
+      const data = res.data;
 
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: "Solace AI",
-            text: data.reply || "I'm here with you. Tell me more.",
-          },
-        ]);
-      } catch (error) {
-        console.error("Chat error:", error);
-      }
-    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "Solace AI",
+          text: data.reply || "I'm here with you. Tell me more.",
+        },
+      ]);
+    } catch (error) {
+      console.error("Chat error:", error);
       setMessages((prev) => [
         ...prev,
         { role: "Solace AI", text: "Something went wrong. Try again." },
       ]);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
-    setInput("");
   };
 
   return (
@@ -66,7 +65,7 @@ const Chat = () => {
               className="w-9 h-9 rounded-xl bg-linear-to-br from-blue-500 to-purple-500 
     flex items-center justify-center text-white shadow-md"
             >
-              ✨
+              S
             </div>
 
             {/* Text */}
@@ -108,8 +107,9 @@ const Chat = () => {
           {/* Typing indicator */}
           {loading && (
             <div className="flex justify-start">
-              <div className="px-4 py-2 rounded-xl bg-white/80 text-gray-500 text-sm shadow">
-                typing...
+              <div className="px-4 py-3 rounded-2xl bg-white/80 backdrop-blur-md text-gray-500 text-sm shadow flex items-center gap-3">
+                <span>Solace is thinking...</span>
+                <TypingLoader />
               </div>
             </div>
           )}

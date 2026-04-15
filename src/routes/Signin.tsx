@@ -2,27 +2,33 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputField from "../components/Input";
 import { api } from "../lib/api";
+import { LoaderIcon } from "lucide-react";
 
 export default function SigninPage() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   async function signin() {
-    const response = await api.post(
-      "/api/v1/user/signin",
-      {
+    try {
+      setLoading(true);
+      const response = await api.post("/api/v1/user/signin", {
         email,
         password,
-      },
-    );
-    console.log(response.data);
-    const token = response.data.token;
-    const role = response.data.role;
-    localStorage.setItem("token", token);
-    if (role == "DOCTOR") {
-      navigate("/doctor/dashboard");
-    } else {
-      navigate("/home");
+      });
+      console.log(response.data);
+      const token = response.data.token;
+      const role = response.data.role;
+      localStorage.setItem("token", token);
+      if (role == "DOCTOR") {
+        navigate("/doctor/dashboard");
+      } else {
+        navigate("/home");
+      }
+    } catch (error) {
+      alert(`Something went wrong ${error}`);
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -98,7 +104,16 @@ export default function SigninPage() {
       bg-linear-to-r from-blue-500 to-purple-500 shadow-md 
       hover:scale-[1.03] hover:shadow-lg transition"
         >
-          Log In
+          {loading ? (
+            <>
+              <div className="flex justify-center items-center gap-x-4">
+                <LoaderIcon className="animate-spin h-6 w-6" />
+                Welcome back...
+              </div>
+            </>
+          ) : (
+            <>Sign In</>
+          )}
         </button>
 
         <div className="flex items-center my-6">

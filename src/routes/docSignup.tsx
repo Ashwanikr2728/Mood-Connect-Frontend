@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import InputField from "../components/Input";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
+import { LoaderIcon } from "lucide-react";
 
 export default function DocSignup() {
+  const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [age, setAge] = useState<number | "">("");
@@ -18,6 +20,7 @@ export default function DocSignup() {
 
   async function handleSignup() {
     try {
+      setLoading(true);
       const secret = getSecret();
 
       await api.post("/api/v1/doctor/signup", {
@@ -40,6 +43,8 @@ export default function DocSignup() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       alert(err.response?.data?.msg || "Signup failed");
+    } finally {
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -129,7 +134,16 @@ export default function DocSignup() {
           onClick={handleSignup}
           className="w-full py-2.5 bg-linear-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium shadow hover:opacity-90"
         >
-          Create Account
+          {loading ? (
+            <>
+              <div className="flex justify-center items-center gap-x-4">
+                <LoaderIcon className="animate-spin" />
+                Creating your space...
+              </div>
+            </>
+          ) : (
+            <>Create Account</>
+          )}
         </button>
 
         {/* Footer */}
